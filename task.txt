@@ -1,0 +1,17 @@
+p1. menu pelaksanaan nikah bisa dibuka bila kepala desa sudah menyetujui catin (done_
+
+2. pihak desa approve baru bisa masuk menu pelaksanaan nikah 
+
+3. setelah di approve oleh kepala desa, bahan cetak di terbitkan dan muncul notifikasi bahwa catin harus verifikasi ke kantor KUA (done)
+
+4. kepla KUA approve data saat catin verifikasi data ke KUA
+
+5. klw udah di approve kepala KUA baru muncul peleksanaan nikah
+
+6. pada menu pelaksanaan nikah muncul seleksi klw dia nikah di KUA proses selesai
+
+7. kalau dia nikah di rumah muncul form pelaksnaan nikah dan harus meng upload bukti pembayaran
+
+8. penghulu cma show data nikahdan approve klw sudah peleksanaan
+
+9. pegawai KUA bisa ganti jadwal nikah
