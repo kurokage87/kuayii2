@@ -18,6 +18,8 @@ use Yii;
  */
 class UploadBukti extends \yii\db\ActiveRecord
 {
+    public $imageFile;
+    
     /**
      * @inheritdoc
      */
@@ -36,6 +38,7 @@ class UploadBukti extends \yii\db\ActiveRecord
             [['tanggal_kirim'], 'safe'],
             [['nama_rek', 'nama_bank', 'foto'], 'string', 'max' => 255],
             [['pelaksanaan_nikah_id'], 'exist', 'skipOnError' => true, 'targetClass' => PelaksanaanNikah::className(), 'targetAttribute' => ['pelaksanaan_nikah_id' => 'id']],
+            [['imageFile'], 'image'],
         ];
     }
 
@@ -60,5 +63,15 @@ class UploadBukti extends \yii\db\ActiveRecord
     public function getPelaksanaanNikah()
     {
         return $this->hasOne(PelaksanaanNikah::className(), ['id' => 'pelaksanaan_nikah_id']);
+    }
+    
+    public function upload()
+    {
+        if ($this->validate()){
+            $this->imageFile->saveAs(\Yii::getAlias('@webroot/upload/bukti-bayar/'.$this->imageFile->baseName.'.'.$this->imageFile->extension));
+            return true;
+        }else{
+            return false;
+        }
     }
 }

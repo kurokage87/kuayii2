@@ -65,8 +65,15 @@ class UploadBuktiController extends Controller
     public function actionCreate()
     {
         $model = new UploadBukti();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $z = \app\models\PelaksanaanNikah::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
+        $model->pelaksanaan_nikah_id = $z->id;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = \yii\web\UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload())
+            {
+                $model->foto = $model->imageFile->name;
+                $model->save(false);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

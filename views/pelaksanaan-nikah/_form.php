@@ -53,15 +53,15 @@ use dosamigos\tinymce\TinyMce;
     
    
 
-    <?= $form->field($model, 'kec_id')->dropDownList(yii\helpers\ArrayHelper::map(\app\models\Kecamatan::find()->all(), 'id', 'nama_kec'),[
+    <?= $form->field($model, 'kec_id')->label('Desa')->dropDownList(yii\helpers\ArrayHelper::map(\app\models\Kecamatan::find()->all(), 'id', 'nama_kec'),[
         'prompt' => 'Pilih '
     ]) ?>
 
     <?= $form->field($model, 'mas_kawin')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pembayaran')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'pembayaran')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'no_perjanjian_kawin')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'no_perjanjian_kawin')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tgl_surat_perjanjian')->widget(
             DatePicker::className(),[

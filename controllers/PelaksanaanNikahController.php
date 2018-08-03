@@ -159,6 +159,7 @@ class PelaksanaanNikahController extends Controller
         $calonIstri = \app\models\DataCatin::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status_data' => \app\models\DataCatin::istri])->one();
         $calonSuami == null ? "" :$model->id_suami = $calonSuami->id;
         $calonIstri == NULL ? "" : $model->id_istri = $calonIstri->id;
+        $model->tgl_daftar = date('d F Y');
         $model->status_nikah = PelaksanaanNikah::daftar_catin;
         $model->user_id = Yii::$app->user->identity->id;
         $pro = \app\models\Profil::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
@@ -205,9 +206,13 @@ class PelaksanaanNikahController extends Controller
         $calonSuami == null ? "" :$model->id_suami = $calonSuami->id;
         $calonIstri == NULL ? "" : $model->id_istri = $calonIstri->id;
         
-        if ($model->load(\Yii::$app->request->post())){
-            
+        if ($model->load(\Yii::$app->request->post()) && $model->save()){
+            return $this->redirect(['upload-bukti/create']);
         }
+        
+        return $this->render('create',[
+            'model' => $model
+        ]);
     }
     
     public function actionCreate()
